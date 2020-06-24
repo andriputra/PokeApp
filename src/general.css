@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.applications {
+  font-family: 'Roboto', sans-serif;
+  padding-top: 7rem;
+}
+.applications nav.navbar{
+  background: #c13c3c !important;;
+}
+.applications nav.navbar .navbar-brand .logo-app{
+  width: 35px;
+}
+.applications nav .search-input{
+  border: none;
+  font-size: 12px;
+  font-style: italic;
+} 
+.applications .card .card-img-top{
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+}
+.applications .card{
+  border: 1px solid #d8d8d8;
+  padding-bottom: 15px;
+}
+.applications .card .card-header{
+  background: #cecece;
+}
+.applications .card .card-title{
+  margin-bottom: 0px;
+  line-height: 24px;
+  text-align: right;
+}
+.applications .card a.btn{
+  border-radius: 5px;
+  display: block;
+  background-color: #c13c3c;
+  color: #ffffff;
+  font-size: 13px;
+  width: 90%;
+  margin: 0 auto;
+}
+.applications .card a.btn:hover{
+  background-color: #a22222;
+}
+.applications .content-detail{
+  margin-bottom: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+}
+.applications .content-detail h6{
+  font-size: 14px;
+  font-weight: 600;
+}
+.applications .content-detail p{
+  margin-bottom: 0px;
+}

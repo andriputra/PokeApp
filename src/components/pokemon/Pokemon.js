@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const TYPE_COLORS = {
   bug: 'B1C12E',
@@ -53,16 +54,11 @@ export default class Pokemon extends Component {
 
   async componentDidMount() {
     const { pokemonIndex } = this.props.match.params;
-
-    // Urls for pokemon information
     const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonIndex}/`;
     const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemonIndex}/`;
-
-    // Get Pokemon Information
     const pokemonRes = await Axios.get(pokemonUrl);
-
     const name = pokemonRes.data.name;
-    const imageUrl = pokemonRes.data.sprites.front_default;
+    const imageUrl = `http://play.pokemonshowdown.com/sprites/xyani/${name}.gif`
 
     let { hp, attack, defense, speed, specialAttack, specialDefense } = '';
 
@@ -90,18 +86,12 @@ export default class Pokemon extends Component {
           break;
       }
     });
-
-    // Convert Decimeters to Feet... The + 0.0001 * 100 ) / 100 is for rounding to two decimal places :)
     const height =
       Math.round((pokemonRes.data.height * 0.328084 + 0.00001) * 100) / 100;
-
     const weight =
       Math.round((pokemonRes.data.weight * 0.220462 + 0.00001) * 100) / 100;
-
     const types = pokemonRes.data.types.map(type => type.type.name);
-
     const themeColor = `${TYPE_COLORS[types[types.length - 1]]}`;
-
     const abilities = pokemonRes.data.abilities
       .map(ability => {
         return ability.ability.name
@@ -127,8 +117,6 @@ export default class Pokemon extends Component {
           .join(' ')}`;
       })
       .join(', ');
-
-    // Get Pokemon Description .... Is from a different end point uggh
     await Axios.get(pokemonSpeciesUrl).then(res => {
       let description = '';
       res.data.flavor_text_entries.some(flavor => {
@@ -140,7 +128,6 @@ export default class Pokemon extends Component {
       const femaleRate = res.data['gender_rate'];
       const genderRatioFemale = 12.5 * femaleRate;
       const genderRatioMale = 12.5 * (8 - femaleRate);
-
       const catchRate = Math.round((100 / 255) * res.data['capture_rate']);
 
       const eggGroups = res.data['egg_groups']
@@ -188,7 +175,7 @@ export default class Pokemon extends Component {
 
   render() {
     return (
-      <div className="col">
+      <div className="content-detail">
         <div className="card">
           <div className="card-header">
             <div className="row">
@@ -203,7 +190,8 @@ export default class Pokemon extends Component {
                       className="badge badge-pill mr-1"
                       style={{
                         backgroundColor: `#${TYPE_COLORS[type]}`,
-                        color: 'white'
+                        color: 'white',
+                        fontWeight: "normal"
                       }}
                     >
                       {type
@@ -219,11 +207,8 @@ export default class Pokemon extends Component {
           </div>
           <div className="card-body">
             <div className="row align-items-center">
-              <div className=" col-md-3 ">
-                <img
-                  src={this.state.imageUrl}
-                  className="card-img-top rounded mx-auto mt-2"
-                />
+              <div className="text-center col-md-3 ">
+                <img src={this.state.imageUrl}  className="card-img-top rounded mx-auto mt-2" />
               </div>
               <div className="col-md-9">
                 <h4 className="mx-auto">
@@ -323,7 +308,7 @@ export default class Pokemon extends Component {
                 </div>
                 <div className="row align-items-center">
                   <div className={`col-12 col-md-${this.state.statTitleWidth}`}>
-                    Sp Atk
+                    Special Attacsk
                   </div>
                   <div className={`col-12 col-md-${this.state.statBarWidth}`}>
                     <div className="progress">
@@ -345,7 +330,7 @@ export default class Pokemon extends Component {
                 </div>
                 <div className="row align-items-center">
                   <div className={`col-12 col-md-${this.state.statTitleWidth}`}>
-                    Sp Def
+                    Special Defense
                   </div>
                   <div className={`col-12 col-md-${this.state.statBarWidth}`}>
                     <div className="progress">
@@ -383,19 +368,19 @@ export default class Pokemon extends Component {
                     <h6 className="float-right">Height:</h6>
                   </div>
                   <div className="col-6">
-                    <h6 className="float-left">{this.state.height} ft.</h6>
+                    <p className="float-left">{this.state.height} ft.</p>
                   </div>
                   <div className="col-6">
                     <h6 className="float-right">Weight:</h6>
                   </div>
                   <div className="col-6">
-                    <h6 className="float-left">{this.state.weight} lbs</h6>
+                    <p className="float-left">{this.state.weight} lbs</p>
                   </div>
                   <div className="col-6">
                     <h6 className="float-right">Catch Rate:</h6>
                   </div>
                   <div className="col-6">
-                    <h6 className="float-left">{this.state.catchRate}%</h6>
+                    <p className="float-left">{this.state.catchRate}%</p>
                   </div>
                   <div className="col-6">
                     <h6 className="float-right">Gender Ratio:</h6>
@@ -413,7 +398,7 @@ export default class Pokemon extends Component {
                         aria-valuemin="0"
                         aria-valuemax="100"
                       >
-                        <small>{this.state.genderRatioFemale}</small>
+                        <small>&#9792; {this.state.genderRatioFemale}</small>
                       </div>
                       <div
                         class="progress-bar"
@@ -426,7 +411,7 @@ export default class Pokemon extends Component {
                         aria-valuemin="0"
                         aria-valuemax="100"
                       >
-                        <small>{this.state.genderRatioMale}</small>
+                        <small>&#9794; {this.state.genderRatioMale}</small>
                       </div>
                     </div>
                   </div>
@@ -438,36 +423,33 @@ export default class Pokemon extends Component {
                     <h6 className="float-right">Egg Groups:</h6>
                   </div>
                   <div className="col-6">
-                    <h6 className="float-left">{this.state.eggGroups} </h6>
+                    <p className="float-left">{this.state.eggGroups} </p>
                   </div>
                   <div className="col-6">
                     <h6 className="float-right">Hatch Steps:</h6>
                   </div>
                   <div className="col-6">
-                    <h6 className="float-left">{this.state.hatchSteps}</h6>
+                    <p className="float-left">{this.state.hatchSteps}</p>
                   </div>
                   <div className="col-6">
                     <h6 className="float-right">Abilities:</h6>
                   </div>
                   <div className="col-6">
-                    <h6 className="float-left">{this.state.abilities}</h6>
+                    <p className="float-left">{this.state.abilities}</p>
                   </div>
                   <div className="col-6">
                     <h6 className="float-right">EVs:</h6>
                   </div>
                   <div className="col-6">
-                    <h6 className="float-left">{this.state.evs}</h6>
+                    <p className="float-left">{this.state.evs}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card-footer text-muted">
-            Data From{' '}
-            <a href="https://pokeapi.co/" target="_blank" className="card-link">
-              PokeAPI.co
-            </a>
-          </div>
+        </div>
+        <div class="card-footer text-muted">
+          <Link className="back-btn" to={`/`}>&#8678; Back</Link>
         </div>
       </div>
     );

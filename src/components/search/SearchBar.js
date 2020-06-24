@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 
 export default class SearchBar extends Component {
+  onchange = e => {
+    this.setState({ search: e.target.value });
+  };
+  state = {
+    search: ""
+  };  
   render() {
+    onchange = e => {
+      this.setState({ search: e.target.value });
+    };
     return (
       <div>
-        <form>
-          <input
-            placeholder="Pokemon"
-            className="form-control mx-auto"
-            style={{
-              backgroundColor: 'white transparent',
-              height: '1.75em',
-              width: '95%',
-              borderRadius: '15px',
-              opacity: '0.8',
-              fontSize: '1.75em'
-            }}
-          />
+        <form className="form-inline">
+          <input placeholder="Pokemon search csdcs" className="form-control mx-auto search-input" onChange={this.onchange}/>
         </form>
       </div>
     );

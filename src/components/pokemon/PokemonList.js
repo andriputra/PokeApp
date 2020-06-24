@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-
 import PokemonCard from './PokemonCard';
 import Loading from '../layout/Loading';
 import axios from 'axios';
 
 export default class PokemonList extends Component {
   state = {
-    url: 'https://pokeapi.co/api/v2/pokemon/',
+    url: 'https://pokeapi.co/api/v2/pokemon/?limit=964s',
     pokemon: null
   };
 
@@ -31,6 +30,7 @@ export default class PokemonList extends Component {
         ) : (
           <Loading />
         )}
+        
       </div>
     );
   }
