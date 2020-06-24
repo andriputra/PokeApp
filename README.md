@@ -1,3 +1,14 @@
+## Step to Run Project :
+1. Install NodeJS on Your Computer or Available NodeJS
+2. Open Command Prompt / Your console running, select to directory this project 
+3. Run command : npm install 
+4. After finish step 3, type command "npm start" for start this project
+5. Yeay!! finish you can try this my project in your browser default http://localhost:3000
+
+### Preview :
+![alt text](https://andriputra.com/imagesoutproject/pokemonlibrary.jpg)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
