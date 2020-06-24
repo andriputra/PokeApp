@@ -24,7 +24,7 @@ export default class PokemonCard extends Component {
         <div className="card">
           <div className="card-header">
             <div className="row">
-              <div className="col">{this.state.pokemonIndex}</div>
+              <div className="col">#{this.state.pokemonIndex}</div>
               <div className="col">
                 <h6 className="card-title">
                   {this.state.name
@@ -52,7 +52,7 @@ export default class PokemonCard extends Component {
                 : { display: 'block' }
             }
           />
-          <Link className="btn" to={`pokemon/${this.state.pokemonIndex}`}>Details</Link>
+          <Link className="btn" to={`pokemon/${this.state.pokemonIndex}`}>Detail Pokemon</Link>
         </div>
       </div>
     );

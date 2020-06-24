@@ -7,6 +7,10 @@ body {
 .applications {
   font-family: 'Roboto', sans-serif;
   padding-top: 7rem;
+  background-image: url('../src/assets/img/bg.png') ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 .applications nav.navbar{
   background: #c13c3c !important;;
@@ -59,4 +63,14 @@ body {
 }
 .applications .content-detail p{
   margin-bottom: 0px;
+}
+.applications .search-input{
+  margin-bottom: 30px;
+}
+.applications .search-input i.icon-search{
+  background-image: url('./components/layout/assets/img/pokeball-search.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
 }

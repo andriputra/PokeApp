@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 
-export default class SearchBar extends Component {
-  onchange = e => {
-    this.setState({ search: e.target.value });
-  };
-  state = {
-    search: ""
-  };  
+export default class SearchBar extends Component { 
   render() {
-    onchange = e => {
-      this.setState({ search: e.target.value });
-    };
     return (
-      <div>
-        <form className="form-inline">
-          <input placeholder="Pokemon search csdcs" className="form-control mx-auto search-input" onChange={this.onchange}/>
-        </form>
+      <div className="search-input input-group md-form form-sm form-2 pl-0">
+        <input className="form-control" type="text" placeholder="Search Pokemon" aria-label="Search"/>
+        <div className="input-group-append">
+          <span className="input-group-text" id="search_Icon">
+            <i className="icon-search"aria-hidden="true"></i>
+          </span>
+        </div>
       </div>
     );
   }
