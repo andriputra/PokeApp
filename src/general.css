@@ -7,6 +7,7 @@ body {
 .applications {
   font-family: 'Roboto', sans-serif;
   padding-top: 7rem;
+  padding-bottom: 4rem;
   background-image: url('../src/assets/img/bg.png') ;
   background-size: cover;
   background-repeat: no-repeat;
@@ -53,7 +54,6 @@ body {
   background-color: #a22222;
 }
 .applications .content-detail{
-  margin-bottom: 50px;
   font-family: 'Nunito', sans-serif;
   font-size: 14px;
 }
@@ -63,6 +63,13 @@ body {
 }
 .applications .content-detail p{
   margin-bottom: 0px;
+}
+.applications .content-detail .card-footer a{
+  color: #ffffff;
+  font-weight: 600;
+}
+.applications .content-detail .card-footer{
+  background-color: #a2bde3;
 }
 .applications .search-input{
   margin-bottom: 30px;
