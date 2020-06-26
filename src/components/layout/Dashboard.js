@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PokemonList from '../pokemon/PokemonList';
-import Searchbar from '../search/SearchBar';
+//import Searchbar from '../search/SearchBar';
 import PokemonCard from '../pokemon/PokemonCard';
 
 export default class Dashboard extends Component {
@@ -22,7 +22,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <React.Fragment>
-        <Searchbar  onChange={this.handleChange}/>
+        {/*<Searchbar  onChange={this.handleChange}/>*/}
         <PokemonList/>
       </React.Fragment>
     );
